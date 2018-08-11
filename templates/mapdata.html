@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+     <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+
+      <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+      <script type='text/javascript' src='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js'></script>
+
+    <style>
+         html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+ #map{
+     height: 100%;
+ }
+ </style>
+ </head>
+
+
+
+  <body>
+
+
+    <div id="map"></div>
+
+
+
+
+
+
+
+  </body>
+
+</html>
+
+
+
+<script>
+
+
+
+function load(name) {
+    document.getElementById("demo").innerHTML='country';
+}
+
+
+
+
+    var map = L.map( 'map', {
+  center: [20.0, 5.0],
+  minZoom: 2,
+  zoom: 2
+});
+
+
+L.tileLayer( 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '©<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  subdomains: ['a', 'b', 'c']
+}).addTo( map );
+
+
+var myIcon = L.icon({
+  iconUrl: 'pin48.png',
+  iconSize: [29, 24],
+  iconAnchor: [9, 21],
+  popupAnchor: [0, -14]
+})
+var lat,lan,url,name;
+
+{% for marker in markers %}
+
+    lat = "{{ marker.lat }}";
+     lan = "{{ marker.lan }}";
+      url= "{{ marker.url }}";
+    name ="{{ marker.name }}";
+
+    L.marker([lat,lan]).addTo(map).bindPopup(name);
+    console.log(url);
+
+{% endfor %}
+
+
+
+</script>

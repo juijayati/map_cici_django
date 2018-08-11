@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="db" uuid="3861f6e7-7736-47f8-897a-61e9589527ca">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <introspection-schemas>*:</introspection-schemas>
+    </data-source>
+    <data-source name="map_db@localhost" uuid="0cab4ede-c36a-494e-828f-583f50e6ed24">
+      <database-info product="PostgreSQL" version="9.5.13" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.2">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>juijayati</user-name>
+      <introspection-schemas>map_db:public</introspection-schemas>
+    </data-source>
+    <data-source name="postgres@localhost" uuid="90f09bc4-f550-4f8f-bb87-c9a207bc885a">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
+    </data-source>
+    <data-source name="postgres@localhost [2]" uuid="9183cc20-c19f-4513-ba4f-5eda19571a4f">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
+    </data-source>
+    <data-source name="map_mysql@mysql-instance.c11vqudde9ws.us-east-2.rds.amazonaws.com" uuid="fec2acb3-8937-44c4-b178-3fbbd4b4c04b">
+      <database-info product="MySQL" version="5.6.39-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>juijayati</user-name>
+      <introspection-schemas>*:map_mysql</introspection-schemas>
+    </data-source>
+    <data-source name="@localhost" uuid="147a0607-b554-4710-9142-69cf4d98d4f7">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
+    </data-source>
+    <data-source name="map_postgres@postgres-instance.c11vqudde9ws.us-east-2.rds.amazonaws.com" uuid="45225fda-860d-49e2-b4b7-2544ec50bb18">
+      <database-info product="PostgreSQL" version="9.6.6" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.2">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>juijayati</user-name>
+      <introspection-schemas>map_postgres:public</introspection-schemas>
+    </data-source>
+  </component>
+</project>

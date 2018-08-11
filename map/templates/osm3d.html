@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+     <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+    <link href="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" rel="stylesheet">
+
+
+  <script src="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="https://cdn.osmbuildings.org/classic/0.2.2b/OSMBuildings-Leaflet.js"></script>
+
+
+
+
+    <script src="https://cdn.osmbuildings.org/mapbox-gl/0.44.1/mapbox-gl.js"></script>
+ <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
+
+    <link href="https://cdn.osmbuildings.org/mapbox-gl/0.44.1/mapbox-gl.css" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+     <style>
+      html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+ #map{
+
+     height: 100%;
+ }
+
+ #b{
+     font-size: 30px;
+     cursor: pointer;
+ }
+
+
+ .time-control {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #999999;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px #000000;
+  vertical-align: middle;
+  font-family: sans-serif;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+      .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #eee;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #212121;
+    display: block;
+    transition: 0.5s;
+
+}
+
+.sidenav a:hover {
+    color: #fafafa;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+      .surf {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #eee;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+
+.surf a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #212121;
+    display: block;
+    transition: 0.3s;
+
+}
+.surf a:hover {
+    color: #fafafa;
+}
+
+.surf .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.surf .backbtn {
+    position: absolute;
+    top: 0;
+    font-size: 36px;
+    margin-left: 0px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+      }
+</style>
+  </head>
+
+  <body>
+
+
+
+
+
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#" onclick="openSurf()">Surface Imagery</a>
+
+
+</div>
+
+  <div id="surfImg" class="surf">
+      <a href="javascript:void(0)" class="backbtn" onclick="backSurf()">&larr;</a>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeSurf()">&times;</a>
+
+          <a href="#" onclick="mapbox()">MapBox</a>
+          <a href="#" onclick="osm()">OpenStreetMap</a>
+          <a href="#" onclick="naturalE()">NaturalEarth</a>
+          <a href="#" onclick="arcgis()">ArcGIS</a>
+
+  </div>
+
+
+
+
+
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Map Project</span>
+   <div id="map"></div>
+
+
+
+  </body>
+</html>
+
+
+  <script>
+
+
+
+  var map = new mapboxgl.Map({
+
+    container: 'map',
+
+    style: 'https://data.osmbuildings.org/0.2/anonymous/style.json',
+
+    center: [13.37, 52.52],
+
+    zoom: 15,
+
+    attributionControl: true
+
+  });
+
+
+var osmb;
+
+function mapbox() {
+    map = new mapboxgl.Map({
+
+    container: 'map',
+
+    style: 'https://data.osmbuildings.org/0.2/anonymous/style.json',
+
+    center: [20.2, 5.0],
+
+        minZoom: 2,
+
+    zoom: 2,
+
+    attributionControl: true
+
+  });
+
+}
+
+function osm() {
+    map = new L.map( 'map', {
+    center: [20.0, 5.0],
+    minZoom: 2,
+    zoom: 2,
+        attributionControl: true
+});
+
+    L.tileLayer( 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    subdomains: ['a','b','c']
+}).addTo( map );
+
+    osmb = new OSMBuildings(map).load();
+
+}
+function arcgis() {
+
+map = new L.map( 'map', {
+    center: [20.0, 5.0],
+    minZoom: 2,
+    zoom: 2,
+        attributionControl: true
+});
+
+
+    L.esri.tiledMapLayer({
+        url: "http://tiles.arcgis.com/tiles/mvnrDxfOCq0CsVom/arcgis/rest/services/15094Background/MapServer",
+        minZoom: 2,
+        maxZoom: 2,
+    }).addTo(map);
+
+}
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "300px";
+}
+function load_home() {
+     document.getElementById("map").innerHTML='<object type="text/html" data="home.html" ></object>';
+}
+
+ function openSurf() {
+    document.getElementById("surfImg").style.width = "300px";
+}
+
+function backSurf() {
+    document.getElementById("surfImg").style.width = "0px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+
+function closeSurf() {
+      document.getElementById("surfImg").style.width = "0";
+    document.getElementById("mySidenav").style.width = "0";
+}
+
+
+  </script>
+
