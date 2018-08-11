@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'q*%h8229^0inz5y-7mvo8ii)u_1!42
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['evening-meadow-99700.herokuapp.com','127.0.0.1']
 
 
 # Application definition
