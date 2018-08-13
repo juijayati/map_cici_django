@@ -33,7 +33,7 @@ DEBUG = False
 #DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 
-ALLOWED_HOSTS = ['evening-meadow-99700.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['map-audio-project-cici.herokuapp.com','127.0.0.1']
 
 
 # Application definition
