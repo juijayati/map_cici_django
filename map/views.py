@@ -15,5 +15,3 @@ def index (request):
 
     return render(request, 'test.html', context)
 
-def mapbox (request):
-    return render(request, 'osm3d.html')
