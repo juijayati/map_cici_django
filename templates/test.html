@@ -24,7 +24,7 @@
     margin: 0;
     padding: 0;
   }
- #map{
+ .map{
 
      height: 100%;
      margin-left: 400px;
@@ -193,16 +193,17 @@
 
 
 
-<div id="map">
+<div id="mapid" class="map">
 
 
   <div id="mySidenav" class="sidenav">
  <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
      <!-- <div id="name">Map Project</div>-->
+
  <h2>Map Project</h2>
   <a href="#" onclick="openSurf()">Surface Imagery</a>
-      <a href="#" onclick="openHist()">Work History</a>
       <a href="{% url 'admin:index' %}">Admin Login</a>
+
 
 
 </div>
@@ -222,8 +223,8 @@
 
   <div id="myHist" class="surf">
       <a href="javascript:void(0)" class="backbtn" onclick="backHist()">&larr;</a>
+        <table id="mytable" class="table"></table>
 
-      <table id="mytable" class="table"></table>
 
   </div>
 
@@ -251,7 +252,7 @@
       var centerlat = 2.5, centerlng = -5.7, currentzoom= 2, minzoom=2, maxzoom=20;
 
 
-      var mymap = L.map('map',{zoomControl: false}).setView([centerlat, centerlng], currentzoom);
+      var mymap = L.map('mapid',{zoomControl: false}).setView([centerlat, centerlng], currentzoom);
       L.control.zoom({position:'topright'}).addTo(mymap);
      // mymap.control.zoom({position: 'topright'});
 
@@ -262,8 +263,6 @@
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoianVpamF5YXRpIiwiYSI6ImNqaTVvbmxsdTBtOTUzcG82ZXo4aTRzZWMifQ.GsBkaiZAzDl8DjHcI0pD1w'
 }).addTo(mymap);
-
-
 
 
 
@@ -341,12 +340,12 @@ function naturalearth(){
     document.getElementById("mySidenav").style.width = "400px";
 }
 
-function openHist(){
+function openHist(table){
 
     document.getElementById("myHist").style.width = "400px";
 
-    document.getElementById("mytable").innerHTML = "<h3>Please click on a location marker to see the work history at that location</h3>";
-
+    //document.getElementById("mytable").innerHTML = "<h3>Please click on a location marker to see the work history at that location</h3>";
+    document.getElementById("mytable").innerHTML= table;
 
 }
 
@@ -391,7 +390,7 @@ var lat,lng,url,name;
 
     lat = {{ location.lat }};
      lng = {{ location.lng }};
-    var mark= L.marker([lat, lng]).addTo(mymap).bindPopup('Co-ordinates : < '+ lat + ' , ' + lng + ' >').on('click',function(){
+    var mark= L.marker([lat, lng]).addTo(mymap).bindPopup("Co-ordinates: < "+lat+ " , "+ lng+" >").on('click',function(){
         var latlng = this.getLatLng();
         var hist = "<table><caption>Co-ordinates: [ " + latlng.lat + ", "+ latlng.lng+ " ]</caption>"
         var table = hist + "<tr><th>Date</th><th>Time</th><th>Machine Labels</th></tr>";
@@ -417,13 +416,24 @@ var lat,lng,url,name;
             {% endfor %}
         table = table + "</table>";
         //document.getElementById("myHist").innerHTML=hist;
-        document.getElementById("mytable").innerHTML= table;
+       // document.getElementById("mytable").innerHTML= table;
+
+        openHist(table);
 
 
     });
     //console.log(job_list.toString());
 
 {% endfor %}
+
+
+     // L.control.scale().addTo(map);
+
+      var navbar = L.DomUtil.get('mySidenav');
+
+
+
+
 
 
 
