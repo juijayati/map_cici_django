@@ -19,14 +19,13 @@
 
       <meta name="viewport" content="width=device-width, initial-scale=1">
      <style>
-      html, body {
+
+  html, body {
     height: 100%;
     margin: 0;
     padding: 0;
   }
-
-      #wrapper{ position: relative;}
- .map{
+ #map{
 
      height: 100%;
      margin-left: 400px;
@@ -47,20 +46,19 @@
       .sidenav {
     height: 100%;
     width: 400px;
-    position: absolute;
+    position: fixed;
 
     top: 0;
     left: 0;
           margin-left: 0px;
     background-color: #eee;
     overflow-x: hidden;
-    
+    transition: 0.5s;
     padding-top: 10px;
           text-align: center;
           z-index: 99;
-
-          opacity: 0.7;
-    filter: alpha(opacity=70);
+          opacity: 0.8;
+    filter: alpha(opacity=80);
 }
 
 
@@ -90,9 +88,9 @@
 
 
       .surf {
-   height: 100%;
+    height: 100%;
     width: 0;
-    position: absolute;
+    position: fixed;
 
     top: 0;
     left: 0;
@@ -103,9 +101,8 @@
     padding-top: 60px;
           text-align: center;
           z-index: 99;
-
-          opacity: 0.7;
-    filter: alpha(opacity=70);
+          opacity: 0.8;
+    filter: alpha(opacity=80);
 }
 
 
@@ -167,7 +164,7 @@
 
 .surf .table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
+    table-layout: fixed;
     width: 400px;
 
 }
@@ -175,6 +172,7 @@
 .surf .table td, .surf .table th {
     border: 1px solid #ddd;
     padding: 8px;
+    word-wrap: break-word;
 }
 
 .surf .table tr:nth-child(even){background-color: #f2f2f2;}
@@ -189,19 +187,13 @@
     color: white;
 }
 
- #over_map { position: absolute; top: 10px; left: 10px; z-index: 99; }
+
 
 
 @media screen and (max-height: 10px) {
   .sidenav{padding-top: 5px;}
   .sidenav a {font-size: 18px;}
       }
-
-
-         #menu {
-  float:right;
-}
-
          .map-wrapper{
     /*for demo purposes*/
    height: 100%;
@@ -252,7 +244,7 @@
 
 
 
-</div>
+
 
 
      <div id="surfImg" class="surf">
