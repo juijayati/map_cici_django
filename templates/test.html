@@ -24,6 +24,8 @@
     margin: 0;
     padding: 0;
   }
+
+      #wrapper{ position: relative;}
  .map{
 
      height: 100%;
@@ -45,16 +47,20 @@
       .sidenav {
     height: 100%;
     width: 400px;
-    position: fixed;
-    z-index: 1;
+    position: absolute;
+
     top: 0;
     left: 0;
           margin-left: 0px;
     background-color: #eee;
     overflow-x: hidden;
-    transition: 0.5s;
+    
     padding-top: 10px;
           text-align: center;
+          z-index: 99;
+
+          opacity: 0.7;
+    filter: alpha(opacity=70);
 }
 
 
@@ -84,10 +90,10 @@
 
 
       .surf {
-    height: 100%;
+   height: 100%;
     width: 0;
-    position: fixed;
-    z-index: 1;
+    position: absolute;
+
     top: 0;
     left: 0;
           margin-left: 0px;
@@ -96,6 +102,10 @@
     transition: 0.5s;
     padding-top: 60px;
           text-align: center;
+          z-index: 99;
+
+          opacity: 0.7;
+    filter: alpha(opacity=70);
 }
 
 
@@ -179,24 +189,60 @@
     color: white;
 }
 
-
+ #over_map { position: absolute; top: 10px; left: 10px; z-index: 99; }
 
 
 @media screen and (max-height: 10px) {
   .sidenav{padding-top: 5px;}
   .sidenav a {font-size: 18px;}
       }
+
+
+         #menu {
+  float:right;
+}
+
+         .map-wrapper{
+    /*for demo purposes*/
+   height: 100%;
+    margin: 0px;
+
+    /*this one is needed*/
+    position: relative;
+}
+#map-canvas2{
+
+    height: 100%;
+
+    border: 0px solid rgb(226, 225, 224);
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0px);
+    background-color: rgb(229, 227, 223);
+}
+#over{
+    background: #000000;
+    position: absolute;
+    z-index: 99;
+    width: 20%;
+    top: 0;
+    height: 400px;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+    color: #FFFFFF;
+
+    /*extra stuff you need*/
+    height: auto;
+    top: 16px; bottom: 16px; left: 16px;/*or if you want to go to the edges switch from 16px to 0*/
+}
 </style>
   </head>
 
 
 
-
-
-<div id="mapid" class="map">
-
-
-  <div id="mySidenav" class="sidenav">
+<div class='map-wrapper'>
+    <div id='map-canvas2'></div>
+    <div id="mySidenav" class="sidenav">
  <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
      <!-- <div id="name">Map Project</div>-->
 
@@ -208,7 +254,8 @@
 
 </div>
 
-  <div id="surfImg" class="surf">
+
+     <div id="surfImg" class="surf">
       <a href="javascript:void(0)" class="backbtn" onclick="backSurf()">&larr;</a>
       <!--<a href="javascript:void(0)" class="closebtn" onclick="closeSurf()">&times;</a>-->
 
@@ -229,10 +276,7 @@
   </div>
 
 </div>
-
-
-
-
+</div>
 
  <!--<div id="map"></div>-->
 
@@ -252,7 +296,7 @@
       var centerlat = 2.5, centerlng = -5.7, currentzoom= 2, minzoom=2, maxzoom=20;
 
 
-      var mymap = L.map('mapid',{zoomControl: false}).setView([centerlat, centerlng], currentzoom);
+      var mymap = L.map('map-canvas2',{zoomControl: false}).setView([centerlat, centerlng], currentzoom);
       L.control.zoom({position:'topright'}).addTo(mymap);
      // mymap.control.zoom({position: 'topright'});
 
@@ -341,7 +385,7 @@ function naturalearth(){
 }
 
 function openHist(table){
-
+    document.getElementById("mySidenav").style.width = "0px";
     document.getElementById("myHist").style.width = "400px";
 
     //document.getElementById("mytable").innerHTML = "<h3>Please click on a location marker to see the work history at that location</h3>";
@@ -353,8 +397,8 @@ function openHist(table){
 function backHist(){
 
 
-
     document.getElementById("myHist").style.width = "0px";
+    document.getElementById("mySidenav").style.width = "400px";
     // get the reference for the body
 
 }
@@ -363,12 +407,14 @@ function load_home() {
 }
 
  function openSurf() {
+    document.getElementById("mySidenav").style.width = "0px";
     document.getElementById("surfImg").style.width = "400px";
     //document.getElementById("table").style.width ="400px";
 }
 
 function backSurf() {
     document.getElementById("surfImg").style.width = "0px";
+    document.getElementById("mySidenav").style.width = "400px";
     //document.getElementById("table").style.width ="0px";
 }
 
