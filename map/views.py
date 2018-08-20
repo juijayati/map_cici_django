@@ -9,7 +9,7 @@ def index (request):
 
     locations = dummy_table.objects.order_by('lat').values('lat', 'lng').distinct()
 
-    tdata = dummy_table.objects.all()
+    tdata = dummy_table.objects.order_by('-dtordinal')
 
     context ={'tdata': tdata, 'locations':locations}
 
