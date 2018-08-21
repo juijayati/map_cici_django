@@ -11,6 +11,9 @@
    integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
    crossorigin=""></script>
 
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 
       <link rel="stylesheet" href="esri-leaflet.js" />
 
@@ -25,23 +28,6 @@
     margin: 0;
     padding: 0;
   }
- #map{
-
-     height: 100%;
-     margin-left: 400px;
- }
-
-#name{
-          top: 0;
-          left: 0;
-          font-size: 36px;
-          font-family: "Lato", sans-serif;
-          text-align: center;
-      }
-
-
-
-
 
       .sidenav {
     height: 100%;
@@ -55,19 +41,21 @@
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 10px;
-          text-align: center;
+    text-align: center;
           z-index: 99;
           opacity: 0.8;
     filter: alpha(opacity=80);
+          font-family: Copperplate, Copperplate Gothic Light, sans-serif;
+
 }
 
 
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 15px 10px 10px 15px;
     text-decoration: none;
     margin-left: 0px;
-     text-align: center;
+     text-align: justify-all;
     font-size: 25px;
     color: #212121;
     display: block;
@@ -99,16 +87,18 @@
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
-          text-align: center;
+          text-align: justify-all;
           z-index: 99;
           opacity: 0.8;
     filter: alpha(opacity=80);
+          font-family: Copperplate, Copperplate Gothic Light, sans-serif;
+
 }
 
 
 .surf a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
+    padding: 15px 8px 8px 15px;
+    text-decoration: none ;
      text-align: center;
     margin-left: 0px;
     font-size: 25px;
@@ -124,7 +114,7 @@
 .surf .closebtn {
     position: absolute;
     top: 0;
-    right: 25px;
+    right: 5px;
     font-size: 36px;
 
     margin-left: 0px;
@@ -173,6 +163,9 @@
     border: 1px solid #ddd;
     padding: 8px;
     word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap */
 }
 
 .surf .table tr:nth-child(even){background-color: #f2f2f2;}
@@ -202,45 +195,30 @@
     /*this one is needed*/
     position: relative;
 }
-#map-canvas2{
+#map{
 
     height: 100%;
 
-    border: 0px solid rgb(226, 225, 224);
     position: relative;
     overflow: hidden;
     transform: translateZ(0px);
-    background-color: rgb(229, 227, 223);
-}
-#over{
-    background: #000000;
-    position: absolute;
-    z-index: 99;
-    width: 20%;
-    top: 0;
-    height: 400px;
-    opacity: 0.9;
-    filter: alpha(opacity=90);
-    color: #FFFFFF;
 
-    /*extra stuff you need*/
-    height: auto;
-    top: 16px; bottom: 16px; left: 16px;/*or if you want to go to the edges switch from 16px to 0*/
 }
+
 </style>
   </head>
 
 
 
 <div class='map-wrapper'>
-    <div id='map-canvas2'></div>
+    <div id='map'></div>
     <div id="mySidenav" class="sidenav">
  <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
      <!-- <div id="name">Map Project</div>-->
 
- <h2>Map Project</h2>
-  <a href="#" onclick="openSurf()">Surface Imagery</a>
-      <a href="{% url 'admin:index' %}">Admin Login</a>
+ <h3>Map Project</h3>
+  <a href="#" onclick="openSurf()"><i class="fa fa-globe"></i> &nbsp; Surface Imagery</a>
+      <a href="{% url 'admin:index' %}"><i class="fa fa-user"></i> &nbsp; Account</a>
 
 
 
@@ -288,7 +266,7 @@
       var centerlat = 2.5, centerlng = -5.7, currentzoom= 2, minzoom=2, maxzoom=20;
 
 
-      var mymap = L.map('map-canvas2',{zoomControl: false}).setView([centerlat, centerlng], currentzoom);
+      var mymap = L.map('map',{zoomControl: false}).setView([centerlat, centerlng], currentzoom);
       L.control.zoom({position:'topright'}).addTo(mymap);
      // mymap.control.zoom({position: 'topright'});
 
@@ -378,6 +356,8 @@ function naturalearth(){
 
 function openHist(table){
     document.getElementById("mySidenav").style.width = "0px";
+     document.getElementById("surfImg").style.width = "0px";
+
     document.getElementById("myHist").style.width = "400px";
 
     //document.getElementById("mytable").innerHTML = "<h3>Please click on a location marker to see the work history at that location</h3>";
@@ -431,7 +411,7 @@ var lat,lng,url,name;
     var mark= L.marker([lat, lng]).addTo(mymap).bindPopup("Co-ordinates: < "+lat+ " , "+ lng+" >").on('click',function(){
         var latlng = this.getLatLng();
         var hist = "<table><caption>Co-ordinates: [ " + latlng.lat + ", "+ latlng.lng+ " ]</caption>"
-        var table = hist + "<tr><th>Date</th><th>Time</th><th>Machine Labels</th></tr>";
+        var table = hist + "<tr><th>Date</th><th>Time</th><th>Job Type</th></tr>";
 
         {% for ddata in tdata %}
             dlat= {{ ddata.lat }}
