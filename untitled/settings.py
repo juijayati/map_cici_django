@@ -30,10 +30,13 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'q*%h8229^0inz5y-7mvo8ii)u_1!42
 #DEBUG = True
 
 
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = False
 
 
-ALLOWED_HOSTS = []
+#DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+
+
+ALLOWED_HOSTS = ['map-audio-project-cici.herokuapp.com','127.0.0.1']
 
 
 # Application definition
