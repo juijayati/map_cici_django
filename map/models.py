@@ -8,6 +8,7 @@ from django.utils.timesince import timesince
 class dummy_table(models.Model):
     dtordinal = models.DecimalField(max_digits=25, decimal_places=15)
     #start = models.TimeField(auto_now_add=True)
+    name = models.CharField(max_length=125)
     lat = models.DecimalField(max_digits=20, decimal_places=17)
     lng = models.DecimalField(max_digits=20, decimal_places=17)
     mlabel = models.CharField(max_length=100)

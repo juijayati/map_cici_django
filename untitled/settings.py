@@ -27,13 +27,13 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'q*%h8229^0inz5y-7mvo8ii)u_1!42
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+#DEBUG = True
 
 
-#DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 
-ALLOWED_HOSTS = ['map-audio-project-cici.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -86,16 +86,25 @@ WSGI_APPLICATION = 'untitled.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
+    'default': {
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'map_postgres',
+         'USER': 'juijayati',
+         'PASSWORD': 'snowwhite',
+         'HOST': 'postgres-instance.c11vqudde9ws.us-east-2.rds.amazonaws.com',
+         'PORT': '5432',
+    }
 
 
-'default': {
-     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-     'NAME': 'map_postgres',
-     'USER': 'juijayati',
-     'PASSWORD': 'snowwhite',
-     'HOST': 'postgres-instance.c11vqudde9ws.us-east-2.rds.amazonaws.com',
-     'PORT': '5432',
-  }
+
+#'default': {
+ #    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+  #   'NAME': 'map_postgres',
+   #  'USER': 'juijayati',
+    # 'PASSWORD': 'snowwhite',
+     #'HOST': 'postgres-instance.c11vqudde9ws.us-east-2.rds.amazonaws.com',
+     #'PORT': '5432',
+  #}
 
 
 

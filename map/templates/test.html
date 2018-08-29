@@ -391,7 +391,7 @@ var lat,lng,url,name;
 
     lat = {{ location.lat }};
      lng = {{ location.lng }};
-    var mark= L.marker([lat, lng]).addTo(mymap).bindPopup("Co-ordinates: < "+lat+ " , "+ lng+" >").on('click',function(){
+    var mark= L.marker([lat, lng]).addTo(mymap).on('click',function(){
         var latlng = this.getLatLng();
         var hist = "<table><caption>Co-ordinates: [ " + latlng.lat + ", "+ latlng.lng+ " ]</caption>"
         var table = hist + "<tr><th>Date</th><th>Time</th><th>Machine Labels</th></tr>";
