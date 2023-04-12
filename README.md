@@ -1,2 +1,2 @@
 # map_cici_django
-A simple website designed using Leaflet and Django - for CICI Lab, LSU
+An website to visualize real-time construction activities, designed using Leaflet and Django - for CICI Lab, LSU
